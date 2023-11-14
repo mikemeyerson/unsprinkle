@@ -12,12 +12,23 @@ const PhotoGridItem = ({ id, src, alt, tags }) => {
     <article>
       <Anchor href={`/photos/${id}`}>
         <picture>
-          <source srcSet={`${avifSrc} 1x, ${avif2xSrc} 2x, ${avif3xSrc} 3x`} />
-          <Image
-            alt={`${alt}. Click for more information.`}
-            src={src}
-            srcSet={`${src} 1x, ${jpg2xSrc} 2x, ${jpg3xSrc} 3x`}
+          <source
+            type="image/avif"
+            srcSet={`
+              ${avifSrc} 1x,
+              ${avif2xSrc} 2x,
+              ${avif3xSrc} 3x
+            `}
           />
+          <source
+            type="image/jpeg"
+            srcSet={`
+              ${src} 1x,
+              ${jpg2xSrc} 2x,
+              ${jpg3xSrc} 3x
+            `}
+          />
+          <Image alt={`${alt}. Click for more information.`} src={src} />
         </picture>
       </Anchor>
       <Tags>
@@ -45,24 +56,24 @@ const Image = styled.img`
 `;
 
 const Tags = styled.ul`
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 8px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* Allows for padding from li's to avoid overflow clipping */
+  padding: 4px 0;
+  overflow: hidden;
 `;
 
 const Tag = styled.li`
+  display: inline;
   padding: 4px 8px;
   background: var(--color-gray-300);
   font-size: 0.875rem;
   font-weight: 475;
   color: var(--color-gray-800);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  flex: 0 0 auto;
+  margin-right: 8px;
 
   &:last-of-type {
-    flex: 0 1 auto;
+    margin-right: 0;
   }
 `;
 
