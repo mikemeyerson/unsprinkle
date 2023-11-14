@@ -1,11 +1,23 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 
 const PhotoGridItem = ({ id, src, alt, tags }) => {
+  const avifSrc = src.replace(".jpg", ".avif");
+  const avif2xSrc = src.replace(".jpg", "@2x.avif");
+  const avif3xSrc = src.replace(".jpg", "@3x.avif");
+  const jpg2xSrc = src.replace(".jpg", "@2x.jpg");
+  const jpg3xSrc = src.replace(".jpg", "@3x.jpg");
+
   return (
     <article>
       <Anchor href={`/photos/${id}`}>
-        <Image src={src} />
+        <picture>
+          <source srcSet={`${avifSrc} 1x, ${avif2xSrc} 2x, ${avif3xSrc} 3x`} />
+          <Image
+            src={src}
+            srcSet={`${src} 1x, ${jpg2xSrc} 2x, ${jpg3xSrc} 3x`}
+          />
+        </picture>
       </Anchor>
       <Tags>
         {tags.map((tag) => (
@@ -24,6 +36,7 @@ const Anchor = styled.a`
 
 const Image = styled.img`
   display: block;
+  object-fit: cover;
   width: 100%;
   height: 300px;
   border-radius: 2px;

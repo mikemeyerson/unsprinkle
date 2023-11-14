@@ -1,11 +1,21 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
+
+const HERO_PATH = "/images/hero-img";
 
 const Hero = () => {
   return (
     <Wrapper>
-      <HeroImage src="/images/hero-img.jpg" />
-      <Swoop src="/swoop.svg" />
+      <picture>
+        <source
+          srcSet={`${HERO_PATH}.avif 1x, ${HERO_PATH}@2x.avif 2x, ${HERO_PATH}@3x.avif 3x`}
+        />
+        <HeroImage
+          src={`${HERO_PATH}.jpg`}
+          srcSet={`${HERO_PATH.jpg} 1x, ${HERO_PATH}@2x.jpg 2x, ${HERO_PATH}@3x.jpg 3x`}
+        />
+      </picture>
+      <Swoop src="/swoop.svg" alt="" />
     </Wrapper>
   );
 };
