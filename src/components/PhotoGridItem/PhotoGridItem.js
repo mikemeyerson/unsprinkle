@@ -14,6 +14,7 @@ const PhotoGridItem = ({ id, src, alt, tags }) => {
         <picture>
           <source srcSet={`${avifSrc} 1x, ${avif2xSrc} 2x, ${avif3xSrc} 3x`} />
           <Image
+            alt={`${alt}. Click for more information.`}
             src={src}
             srcSet={`${src} 1x, ${jpg2xSrc} 2x, ${jpg3xSrc} 3x`}
           />

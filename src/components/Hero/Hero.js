@@ -11,6 +11,7 @@ const Hero = () => {
           srcSet={`${HERO_PATH}.avif 1x, ${HERO_PATH}@2x.avif 2x, ${HERO_PATH}@3x.avif 3x`}
         />
         <HeroImage
+          alt="A gray and white cat staring blankly at you."
           src={`${HERO_PATH}.jpg`}
           srcSet={`${HERO_PATH.jpg} 1x, ${HERO_PATH}@2x.jpg 2x, ${HERO_PATH}@3x.jpg 3x`}
         />
